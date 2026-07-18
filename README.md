@@ -132,6 +132,11 @@ src/
 │
 ├── constants.ts            # 路径常量、CDN 地址
 │
+├── tools/
+│   └── visualize-logs.ts   # 日志可视化工具（npm run visualize）
+│                           生成 HTML 对比 Claude 原始输出 vs 微信实际展示内容
+│                           参数：--date YYYY-MM-DD, --output 路径, --open 自动打开浏览器
+│
 ├── claude/
 │   ├── provider.ts         # Claude CLI 子进程管理
 │   │   启动参数：claude -p- --output-format stream-json --verbose
@@ -177,6 +182,14 @@ src/
     ├── crypto.ts           # AES-128-ECB 加解密
     │
     └── sync-buf.ts         # 轮询游标持久化
+
+### 脚本
+
+| 脚本 | 路径 | 说明 |
+|------|------|------|
+| 守护进程管理 | `scripts/daemon.sh` | 跨平台 daemon 管理：start/stop/restart/status/logs。macOS 用 launchd，Linux 用 systemd/nohup |
+| 日志可视化 | `src/tools/visualize-logs.ts` | `npm run visualize` — 生成 HTML 对比 Claude 原始输出 vs 微信实际展示内容。参数：`--date YYYY-MM-DD`, `--output 路径`, `--open` |
+| 响应时间监控 | `~/.wechat-claude-code/scripts/timing.sh` | 从日志自动提取用户消息→Claude 响应数据（含 thinking time 占比），输出到 `logs/chat-YYYY-MM-DD.txt`。中位 26s，thinking 占比 90%+ |
 ```
 
 ---

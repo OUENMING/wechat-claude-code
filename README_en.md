@@ -128,15 +128,27 @@ The daemon long-polls WeChat for new messages, forwards them to the local `claud
 
 ## Data Directory
 
-All data is stored in `~/.wechat-claude-code/`:
+All data stored in `~/.wechat-claude-code/`:
 
 ```
 ~/.wechat-claude-code/
 ├── accounts/       # WeChat account credentials
 ├── config.json     # Global config
 ├── sessions/       # Session data
+├── get_updates_buf # Long-poll cursor
 └── logs/           # Rotating logs (daily, 30-day retention)
+  ├── bridge-YYYY-MM-DD.log
+  ├── stdout.log
+  └── stderr.log
 ```
+
+## Scripts & Tools
+
+| Script | Location | Purpose |
+|--------|----------|---------|
+| Daemon manager | `scripts/daemon.sh` | Cross-platform daemon management: start/stop/restart/status/logs. launchd (macOS) / systemd (Linux) / nohup fallback |
+| Log visualizer | `src/tools/visualize-logs.ts` | `npm run visualize` — generates HTML comparing Claude's raw output vs what the user actually saw in WeChat. Options: `--date YYYY-MM-DD`, `--output path`, `--open` |
+| Timing monitor | `~/.wechat-claude-code/scripts/timing.sh` | Auto-extracts user-message→response timing data from bridge logs (including thinking time share), appends to `logs/chat-YYYY-MM-DD.txt`. Median 26s, thinking 90%+ |
 
 ## License
 
