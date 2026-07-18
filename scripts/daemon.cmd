@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 REM ==========================================================================
 REM wechat-claude-code Windows daemon manager
-REM Uses: PowerShell background job + Task Scheduler for auto-start
+REM Uses: PowerShell to launch background process with proper PID tracking
 REM ==========================================================================
 
 set "DATA_DIR=%USERPROFILE%\.wechat-claude-code"
@@ -11,7 +11,6 @@ set "PROJECT_DIR=%~dp0.."
 set "PID_FILE=%DATA_DIR%\daemon.pid"
 
 if "%1"=="" goto :usage
-
 if "%1"=="start" goto :start
 if "%1"=="stop" goto :stop
 if "%1"=="status" goto :status
@@ -30,9 +29,9 @@ goto :usage
     )
     del "%PID_FILE%"
   )
-  start /B "" node "%PROJECT_DIR%\dist\main.js" start
-  set PID=!ERRORLEVEL!
-  echo !PID!>"%PID_FILE%"
+  REM Use PowerShell to start node and capture the actual PID
+  powershell -Command "$p = Start-Process -FilePath 'node' -ArgumentList '%PROJECT_DIR:\=\%\dist\main.js start' -WindowStyle Hidden -PassThru; Write-Output $p.Id" > "%PID_FILE%"
+  set /p PID=<"%PID_FILE%"
   echo Started wechat-claude-code daemon (PID: !PID!)
   exit /b 0
 
@@ -42,7 +41,7 @@ goto :usage
     exit /b 0
   )
   set /p PID=<"%PID_FILE%"
-  taskkill /F /PID !PID! 2>nul
+  taskkill /T /F /PID !PID! 2>nul
   del "%PID_FILE%"
   echo Stopped (PID: !PID!)
   exit /b 0
