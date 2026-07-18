@@ -1,13 +1,12 @@
 # WeChat Claude Code Bridge
 
 <p align="center">
-  <strong>Chat with Claude Code in WeChat, just like texting a friend</strong>
+  <strong>Chat with Claude Code from WeChat — text, images, voice, files</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/Wechat-ggGitHub/wechat-claude-code/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License: MIT"></a>
-  <a href="https://skills.sh/Wechat-ggGitHub/wechat-claude-code"><img src="https://img.shields.io/badge/skills.sh-view_page-blue?style=flat-square" alt="skills.sh"></a>
-  <a href="README.md"><img src="https://img.shields.io/badge/Lang-中文-lightgrey?style=flat-square" alt="中文"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License: MIT"></a>
+  <a href="README.md"><img src="https://img.shields.io/badge/Lang-简体中文-lightgrey?style=flat-square" alt="简体中文"></a>
 </p>
 
 Scan a QR code to bind your WeChat, and a new "friend" appears in your contacts. Send it a message — it gets forwarded to Claude Code running on your computer, and the reply streams back to WeChat in real time. Supports text, images, voice, and files.
