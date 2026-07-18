@@ -19,9 +19,7 @@ TypeScript 编写，Node.js 后台守护进程，macOS 用 launchd 管理，Linu
 
 扫码绑定微信后，你的联系人里会多出一个好友。发消息给它，内容自动转发到你电脑上运行的 Claude Code，回复实时推送回微信。
 
-TypeScript 编写，Node.js 后台守护进程，macOS 用 launchd 管理，Linux 用 systemd。
-
----
+TypeScript 编写，Node.js 后台守护进程，macOS 用 launchd 管理，Linux 用 systemd，Windows 用 daemon.cmd。
 
 ## 功能
 
@@ -40,7 +38,7 @@ TypeScript 编写，Node.js 后台守护进程，macOS 用 launchd 管理，Linu
 ## 前置条件
 
 - Node.js >= 18
-- macOS (launchd) 或 Linux (systemd)
+- macOS (launchd) / Linux (systemd) / Windows (daemon.cmd)
 - 个人微信账号
 - 已安装 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI 并完成认证
 
@@ -71,7 +69,7 @@ npm run setup
 npm run daemon -- start
 ```
 
-macOS 注册 launchd agent，开机自启、崩溃自动重启。Linux 创建 systemd user service，无 systemd 时使用 nohup + PID 文件降级。
+macOS 注册 launchd agent，开机自启、崩溃自动重启。Linux 创建 systemd user service，无 systemd 时使用 nohup + PID 文件降级。Windows 使用 `scripts/daemon.cmd`（PowerShell 后台任务）。
 
 ### 4. 开始聊天
 
@@ -84,6 +82,14 @@ npm run daemon -- status    # 查看状态
 npm run daemon -- stop      # 停止
 npm run daemon -- restart   # 重启（更新代码后）
 npm run daemon -- logs      # 查看日志
+```
+
+Windows 用 daemon.cmd：
+```cmd
+scripts\daemon.cmd status
+scripts\daemon.cmd stop
+scripts\daemon.cmd restart
+scripts\daemon.cmd logs
 ```
 
 ---
@@ -187,7 +193,7 @@ src/
 
 | 脚本 | 路径 | 说明 |
 |------|------|------|
-| 守护进程管理 | `scripts/daemon.sh` | 跨平台 daemon 管理：start/stop/restart/status/logs。macOS 用 launchd，Linux 用 systemd/nohup |
+| 守护进程管理 | `scripts/daemon.sh` | 跨平台 daemon 管理：start/stop/restart/status/logs。macOS 用 launchd，Linux 用 systemd/nohup，Windows 用 `scripts/daemon.cmd` |
 | 日志可视化 | `src/tools/visualize-logs.ts` | `npm run visualize` — 生成 HTML 对比 Claude 原始输出 vs 微信实际展示内容。参数：`--date YYYY-MM-DD`, `--output 路径`, `--open` |
 | 响应时间监控 | `~/.wechat-claude-code/scripts/timing.sh` | 从日志自动提取用户消息→Claude 响应数据（含 thinking time 占比），输出到 `logs/chat-YYYY-MM-DD.txt`。中位 26s，thinking 占比 90%+ |
 ```

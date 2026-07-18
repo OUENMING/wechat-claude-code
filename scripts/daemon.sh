@@ -438,7 +438,8 @@ main() {
       ;;
     *)
       echo "Error: Unsupported platform '$OS_TYPE'"
-      echo "Supported platforms: macOS (Darwin), Linux"
+      echo "Supported platforms: macOS (Darwin), Linux, Windows"
+      echo "On Windows, use daemon.cmd instead."
       exit 1
       ;;
   esac

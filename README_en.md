@@ -60,7 +60,7 @@ A QR code will pop up — scan it with WeChat.
 npm run daemon -- start
 ```
 
-On macOS, this registers a launchd agent for auto-start on boot and auto-restart on crash.
+On macOS, this registers a launchd agent for auto-start on boot and auto-restart on crash. On Windows, use `scripts\daemon.cmd start` instead.
 
 ### 3. Start chatting
 
@@ -74,6 +74,8 @@ npm run daemon -- stop     # Stop the service
 npm run daemon -- restart  # Restart (after code updates)
 npm run daemon -- logs     # View recent logs
 ```
+
+Windows: use `scripts\daemon.cmd` instead (status/stop/restart/logs).
 
 ---
 
@@ -120,7 +122,7 @@ The daemon long-polls WeChat for new messages, forwards them to the local `claud
 ## Prerequisites
 
 - Node.js >= 18
-- macOS or Linux
+- macOS (launchd), Linux (systemd), or Windows (daemon.cmd)
 - A personal WeChat account
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI installed and authenticated
 
