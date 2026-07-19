@@ -305,6 +305,10 @@ MIT
 
 ## Star History
 
-如果觉得项目不错，欢迎点个 Star ⭐
-
-[![Star History Chart](https://api.star-history.com/svg?repos=OUENMING/wechat-claude-code&type=Date)](https://star-history.com/#OUENMING/wechat-claude-code&Date)
+<a href="https://www.star-history.com/?type=date&repos=OUENMING%2Fwechat-claude-code">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=OUENMING/wechat-claude-code&type=date&theme=dark&legend=top-left&sealed_token=9fEO20uf6c1w5UfJNAbT38Gv4BD2ujfgqln8dt6mhx3O7yke6n2vbEmgA6uVhPFqgr9-55uV9GGzGos90iHB_asQHN_xglmvMyw7KW9gOenvfT1HtoQ6jQ" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=OUENMING/wechat-claude-code&type=date&legend=top-left&sealed_token=9fEO20uf6c1w5UfJNAbT38Gv4BD2ujfgqln8dt6mhx3O7yke6n2vbEmgA6uVhPFqgr9-55uV9GGzGos90iHB_asQHN_xglmvMyw7KW9gOenvfT1HtoQ6jQ" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=OUENMING/wechat-claude-code&type=date&legend=top-left&sealed_token=9fEO20uf6c1w5UfJNAbT38Gv4BD2ujfgqln8dt6mhx3O7yke6n2vbEmgA6uVhPFqgr9-55uV9GGzGos90iHB_asQHN_xglmvMyw7KW9gOenvfT1HtoQ6jQ" />
+ </picture>
+</a>
